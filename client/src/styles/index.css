@@ -1,0 +1,50 @@
+html, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #f2f2f2 0%, #bfbfbf 100%);
+}
+.pageBlurb {
+    border-left: 1px solid black;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15.5%;
+    padding: 0 2%;
+    text-align: center;
+    font-size: 1.2rem;
+    flex-direction: column;
+}
+.formOuterContainer {
+    border-left: 1px solid black;
+    padding-top: 12% !important;
+    display: flex;
+    flex-direction: column;
+}
+.formStyling {
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 12%;
+    padding: 10px;
+}
+.labelStyling {
+    font-size: 1.1rem;
+}
+.formSubmitBtn {
+    background-color: #FFF !important;
+    width: 75%;
+}
+.linkTo {
+    color: '#000';
+    font-size: 1.1rem;
+    background-color: #FFF !important
+}
+.tips {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15.5%;
+    padding: 0 2%;
+    font-size: 1.1rem;
+    flex-direction: column;
+}
