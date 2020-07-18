@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
+import axios from 'axios'
 
 
 class Register extends React.Component {
@@ -11,14 +12,27 @@ class Register extends React.Component {
         surname: '',
         allowFormSubmit: false,
         displayPasswordTip: false,
-        userLoggedIn: false
+        userLoggedIn: false,
+        successRegister: false
     }
 
     submitRegister = e => {
         e.preventDefault()
-        this.props.history.push({
-            pathname: '/'
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/register',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                email: this.state.email,
+                password: this.state.password,
+                firstname: this.state.firstname,
+                surname: this.state.surname
+            }
         })
+        .then(() => {this.onFormSubmitSuccess()})
+        .catch((err) => console.log(err))
     }
 
     isValidForm = () => {
@@ -28,11 +42,17 @@ class Register extends React.Component {
         validEmail && validPassword ? this.setState({allowFormSubmit: true}) : this.setState({allowFormSubmit: false})
     }
     
-
     renderPasswordTip = () => {
-        this.setState({
-            displayPasswordTip: !this.state.displayPasswordTip
-        })
+        this.setState({displayPasswordTip: !this.state.displayPasswordTip})
+    }
+
+    onFormSubmitSuccess = () => {
+        this.setState({successRegister: true})
+        setTimeout(() => {
+            this.props.history.push({
+                pathname: '/'
+            })
+        }, 3000)
     }
 
     render() {
@@ -94,6 +114,16 @@ class Register extends React.Component {
                         </form>
                         <div style={{textAlign: 'center'}}>
                             <Link to="/" className="button ui linkTo">Already registered? Login</Link>
+                        </div>
+                        <div>
+                            {this.state.successRegister
+                                ? 
+                                <div className="loadingIcon">
+                                    <i className="fa fa-circle-o-notch fa-spin"></i>
+                                    Redirecting to login screen...
+                                </div>
+                                :
+                                null}
                         </div>
                     </div>
                     <div className="column tips">

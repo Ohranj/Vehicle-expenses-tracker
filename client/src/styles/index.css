@@ -22,7 +22,7 @@ html, #root {
     flex-direction: column;
 }
 .formStyling {
-    border: 2px solid black;
+    border: 1px solid black;
     text-align: center;
     border-radius: 5px;
     margin-bottom: 12%;
@@ -47,4 +47,16 @@ html, #root {
     padding: 0 2%;
     font-size: 1.1rem;
     flex-direction: column;
+}
+.loadingIcon {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.loadingIcon > i {
+    padding: 20px 0;
+    font-size: 50px;
 }

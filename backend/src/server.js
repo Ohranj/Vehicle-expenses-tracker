@@ -1,0 +1,32 @@
+const express = require('express')
+const cors = require('cors')
+
+require('./database/mongoConnect')
+
+const {registerRoute} = require('./routes/register/index')
+
+
+const app = express()
+const PORT = 8080
+
+app.use(cors({
+    origin: true,
+    methods: 'GET, POST, PATCH, DELETE, PUT',
+    allowedHeaders: 'Content-Type, Authorization'
+}))
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: true
+}))
+
+
+
+//REGISTER ROUTES
+app.use('/register', registerRoute)
+
+
+//RUN SERVER
+app.listen({
+    host: 'localhost',
+    port: PORT
+}, () => console.log(`Server running on localhost:${PORT}`))
