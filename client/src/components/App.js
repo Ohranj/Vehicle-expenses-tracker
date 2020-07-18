@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import Login from './Login'
 import Register from './Register'
+import DashVehicles from './dash/DashVehicles'
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
             <Switch>
                 <Route path="/" exact component={Login}  />
                 <Route path="/register" component={Register} />
+                <Route path="/dashboard" component={DashVehicles} />
             </Switch>
         </BrowserRouter>
         </div>

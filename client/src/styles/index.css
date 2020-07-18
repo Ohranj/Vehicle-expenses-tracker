@@ -39,6 +39,11 @@ html, #root {
     background-color: #FFF !important;
     width: 75%;
 }
+.addVehicleFormSubmitBtn {
+    background-color: #FFF !important;
+    width: 100px;
+    margin-top: 24px !important;
+}
 .linkTo {
     color: '#000';
     font-size: 1.1rem;
@@ -70,4 +75,14 @@ html, #root {
     margin-top: 50%;
     font-size: 1.7rem;
     padding-left: 2%;
+}
+.vehicleTable > tr > td {
+    padding: 2px 11px;
+}
+.addVehicleContainer {
+    border-top: 1px solid black;
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center;
 }

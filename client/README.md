@@ -1,1 +1,1 @@
-Setup auth and dashboard sections
+Do backend for posting new vehicles - wire up schemas

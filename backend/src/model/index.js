@@ -33,6 +33,9 @@ const vehicleSchema = mongoose.Schema({
     model: {
         type: String
     },
+    mileage: {
+        type: Number
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserModel'
