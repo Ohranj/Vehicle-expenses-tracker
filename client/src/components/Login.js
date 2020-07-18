@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
+import axios from 'axios'
 
 
 class Login extends React.Component {
@@ -7,12 +8,42 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
-        userLoggedIn: false
+        userLoggedIn: false,
+        userFound: true,
+        displayLoader: false
     }
 
     submitLogin = e => {
         e.preventDefault()
-        console.log(this.state.email, this.state.password)
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/login',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                email: this.state.email,
+                password: this.state.password
+            }
+        }).then(({data}) => this.successLogin(data))
+        .catch(() => this.failedLogin())
+    }
+
+    successLogin = ({token}) => {
+        localStorage.setItem('token', token)
+        this.setState({
+            displayLoader: true, 
+            userFound: true
+        })
+        setTimeout(() => {
+            this.setState({
+                userLoggedIn: true
+            })
+        }, 3000)
+    }
+
+    failedLogin = () => {
+        this.setState({userFound: false})
     }
 
     render() {
@@ -23,9 +54,9 @@ class Login extends React.Component {
         } else {
             return (
                 <div className="ui three column grid" style={{minHeight: '100%'}}>
-                    <div className="column outerContainer pageBlurb">
-                        <p>Quickly and easily track expenses for a fleet of vehicles</p>
-                        <p>Once logged in, add your vehicles to the page and update expenses as and when needed</p>
+                    <div className="column pageBlurb">
+                        <p>Quickly and easily track expenses for a fleet of vehicles.</p>
+                        <p>Once logged in, input your vehicles to the page and update individual expenses as and when needed.</p>
                     </div>
                     <div className="column formOuterContainer">
                         <form className="ui form formStyling" onSubmit={this.submitLogin}>
@@ -34,8 +65,9 @@ class Login extends React.Component {
                                 <input
                                     type="email"
                                     name="email"
+                                    required
                                     placeholder="Email..." 
-                                    onChange={({target}) => this.setState({email: target.value})} 
+                                    onChange={({target}) => this.setState({email: target.value})}
                                 />
                             </div>
                             <div className="field labelStyling">
@@ -52,8 +84,27 @@ class Login extends React.Component {
                         <div style={{textAlign: 'center'}}>
                             <Link to="/register" className="button ui linkTo">Need an account? Register</Link>
                         </div>
+                        <div>
+                            {this.state.displayLoader
+                                ? 
+                                <div className="loadingIcon">
+                                    <i className="fa fa-circle-o-notch fa-spin"></i>
+                                    Accessing your dashboard...
+                                </div>
+                                :
+                                null}
+                        </div>
                     </div>
-                    <div className="column"></div>
+                    <div className="column">
+                        {!this.state.userFound
+                            ?
+                            <div className="noUserError">
+                                No user found. Check your email or password
+                            </div>
+                            :
+                            null
+                        }
+                    </div>
                 </div>
             )
         }

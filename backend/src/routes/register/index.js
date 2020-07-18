@@ -1,10 +1,23 @@
 const router = require('express').Router()
+const {UserModel} = require('../../model/index')
 
 
 //POST NEW REGISTER USER REQUEST
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const {email, password, firstname, surname} = req.body
-    res.status(200).json('ok')
+    const newUser = new UserModel({
+        email,
+        password,
+        firstname,
+        surname
+    })
+    await newUser.save((err, product) => {
+        if (err) {
+            return console.log('error in saving user')
+        }
+        console.log('User saved')
+        return res.status(200).json(product)
+    })
 })
 
 

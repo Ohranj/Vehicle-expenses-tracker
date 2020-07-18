@@ -4,6 +4,7 @@ const cors = require('cors')
 require('./database/mongoConnect')
 
 const {registerRoute} = require('./routes/register/index')
+const {loginRoute} = require('./routes/login/index')
 
 
 const app = express()
@@ -23,6 +24,7 @@ app.use(express.urlencoded({
 
 //REGISTER ROUTES
 app.use('/register', registerRoute)
+app.use('/login', loginRoute)
 
 
 //RUN SERVER

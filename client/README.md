@@ -1,1 +1,1 @@
-Create mongoose model for saving to mongo and wire up to backend route
+Setup auth and dashboard sections
