@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {UserModel} = require('../../model/index')
+const {UserModel} = require('../../model/User')
 
 
 //POST NEW REGISTER USER REQUEST

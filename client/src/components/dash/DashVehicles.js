@@ -1,5 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import axios from 'axios'
 
 import DashAddVehicles from './DashAddVehicles'
 
@@ -7,11 +8,28 @@ import DashAddVehicles from './DashAddVehicles'
 class DashVehicles extends React.Component {
 
     state = {
-        validLogin: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        myVehicles: []
+    }
+
+    componentDidMount() {
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/dash',
+            headers: {
+                'Authorization' : `Bearer ${this.state.token}`
+            }
+        }).then((res) => {
+            const updateVehicles = [...this.state.myVehicles, res.data[0]]
+            this.setState({
+                myVehicles: updateVehicles
+            })
+        })
+        .catch((err) => console.log(err))
     }
 
     render() {
-        if (!this.state.validLogin) {
+        if (!this.state.token) {
             return (
                 <Redirect to="/" />
             )
@@ -35,11 +53,11 @@ class DashVehicles extends React.Component {
                                 </thead>
                                 <tbody className="vehicleTable">
                                     <tr style={{cursor: 'pointer'}}>
-                                        <td data-label="Name">James</td>
-                                        <td data-label="vehicle-reg">24</td>
-                                        <td data-label="make">Engineer</td>
-                                        <td data-label="model">insert</td>
-                                        <td data-label="mileage">100</td>
+                                        <td data-label="Name">Mark's van</td>
+                                        <td data-label="vehicle-reg">KN34 7YY</td>
+                                        <td data-label="make">Vauxhall</td>
+                                        <td data-label="model">Vivaro</td>
+                                        <td data-label="mileage">93,700</td>
                                         <td><button className="ui yellow button" style={{padding: '5px 11px'}}>Edit</button></td>
                                         <td><button className="ui red button" style={{padding: '5px 11px'}}>Delete</button></td>
                                     </tr>
