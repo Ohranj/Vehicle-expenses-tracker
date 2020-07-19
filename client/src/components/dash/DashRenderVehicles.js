@@ -22,9 +22,9 @@ class DashRenderVehicles extends React.Component {
                         pathname: '/expenses',
                         search: `?id=${vehicle._id}$name=${vehicle.name}`,
                         state: {selectedVehicleName: vehicle.name, selectedVehicleiD: vehicle._id}
-                    }}><button className="ui green button" style={{padding: '5px 11px'}}>View</button></Link></td>
-                    <td><button className="ui yellow button" style={{padding: '5px 11px'}}>Edit</button></td>
-                    <td><button className="ui red button" style={{padding: '5px 11px'}}>Delete</button></td>
+                    }}><button className="ui green button tableBtn">View</button></Link></td>
+                    <td><button className="ui yellow button tableBtn">Edit</button></td>
+                    <td><button className="ui red button tableBtn">Delete</button></td>
                 </tr>
             )
         })

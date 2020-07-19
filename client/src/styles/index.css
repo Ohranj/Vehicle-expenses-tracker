@@ -86,3 +86,13 @@ html, #root {
     flex-direction: column !important;
     align-items: center;
 }
+.expenseLeftCol {
+    margin-top: 5%;
+    padding-left: 5% !important;
+}
+.expenseTable {
+    border: 1px solid black !important;
+}
+.tableBtn {
+    padding: 5px 11px !important;
+}

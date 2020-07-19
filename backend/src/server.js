@@ -6,6 +6,7 @@ require('./database/mongoConnect')
 const {registerRoute} = require('./routes/register/index')
 const {loginRoute} = require('./routes/login/index')
 const {dashBoardRoute} = require('./routes/dashboard/index')
+const {expensesRoute} = require('./routes/expenses/index')
 
 
 const app = express()
@@ -27,6 +28,7 @@ app.use(express.urlencoded({
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)
 app.use('/dash', dashBoardRoute)
+app.use('/expenses', expensesRoute)
 
 
 //RUN SERVER
