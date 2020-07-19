@@ -17,6 +17,7 @@ router.post('/', auth, (req, res, next) => {
     })
     newVehicle.save((err, product) => {
         if (err) {
+            console.log(err)
             return res.status(403).json(err)
         }
         console.log('Vehicle saved')
