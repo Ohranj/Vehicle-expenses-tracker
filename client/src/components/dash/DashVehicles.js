@@ -41,7 +41,7 @@ class DashVehicles extends React.Component {
                     <div className="ui grid centered" style={{height: '70%'}}>
                         <div className="two wide column"></div>
                         <div className="twelve wide column" style={{paddingTop: '25px'}}>
-                            <table className="ui celled table">
+                            <table className="ui celled table striped compact selectable">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -49,8 +49,8 @@ class DashVehicles extends React.Component {
                                         <th>Make</th>
                                         <th>Model</th>
                                         <th>Mileage</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Expenses</th>
+                                        <th colSpan="2"></th>
                                     </tr>
                                 </thead>
                                 <tbody className="vehicleTable">

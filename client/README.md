@@ -1,2 +1,1 @@
-Create page to add view and add expenses to a car
-push expenses to vehicle
+Create post request to add expenses and wire up models

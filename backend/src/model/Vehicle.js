@@ -36,6 +36,10 @@ const expensesSchema = mongoose.Schema({
     description: {
         type: String
     },
+    date: {
+        type: Date,
+        default: Date.now()
+    },
     vehicle: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'VehicleModel'
