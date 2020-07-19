@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 
 import DashAddVehicles from './DashAddVehicles'
+import DashRenderVehicles from './DashRenderVehicles'
 
 
 class DashVehicles extends React.Component {
@@ -19,10 +20,11 @@ class DashVehicles extends React.Component {
             headers: {
                 'Authorization' : `Bearer ${this.state.token}`
             }
-        }).then((res) => {
-            const updateVehicles = [...this.state.myVehicles, res.data[0]]
+        })
+        .then(({data}) => {
+            const updateVehicles = [...this.state.myVehicles, data]
             this.setState({
-                myVehicles: updateVehicles
+                myVehicles: updateVehicles[0]
             })
         })
         .catch((err) => console.log(err))
@@ -52,15 +54,7 @@ class DashVehicles extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody className="vehicleTable">
-                                    <tr style={{cursor: 'pointer'}}>
-                                        <td data-label="Name">Mark's van</td>
-                                        <td data-label="vehicle-reg">KN34 7YY</td>
-                                        <td data-label="make">Vauxhall</td>
-                                        <td data-label="model">Vivaro</td>
-                                        <td data-label="mileage">93,700</td>
-                                        <td><button className="ui yellow button" style={{padding: '5px 11px'}}>Edit</button></td>
-                                        <td><button className="ui red button" style={{padding: '5px 11px'}}>Delete</button></td>
-                                    </tr>
+                                    <DashRenderVehicles vehicles={this.state.myVehicles} />
                                 </tbody>
                             </table>
                         </div>

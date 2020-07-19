@@ -13,7 +13,6 @@ class DashAddVehicles extends React.Component {
     }
 
     addVehicleSubmit = e => {
-        e.preventDefault()
         const token = localStorage.getItem('token')
         axios({
             method: 'post',
@@ -28,7 +27,7 @@ class DashAddVehicles extends React.Component {
                 model: this.state.model,
                 mileage: this.state.mileage
             }
-        })
+        }).then((data) => console.log(data))
     }
 
     render() {
