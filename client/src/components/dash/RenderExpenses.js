@@ -15,7 +15,13 @@ class RenderExpenses extends React.Component {
                             <td>{expense.description}</td>
                             <td>{expense.value}</td>
                             <td>{expense.date}</td>
-                            <td><button className="ui red button tableBtn">Delete</button></td>
+                            <td>
+                                <button
+                                    className="ui red button tableBtn"
+                                    onClick={() => this.props.deleteExpense(expense._id)}>
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     )
                 })

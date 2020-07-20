@@ -59,6 +59,20 @@ class ViewExpenses extends React.Component {
         })
     }
 
+    deleteExpense = (id) => {
+        let expensesToKeep = []
+        this.state.newExpense.map((expense) => {
+            if (expense._id !== id) {
+                return expensesToKeep.push(expense)
+            }
+            return null
+        })
+        this.setState({
+            newExpense: expensesToKeep
+        })
+        
+    }
+
     render() {
         if (!this.state.token) {
             return (
@@ -84,7 +98,7 @@ class ViewExpenses extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <RenderExpenses expense={this.state.newExpense} />
+                                    <RenderExpenses expense={this.state.newExpense} deleteExpense={this.deleteExpense} />
                                     <tr>
                                         <td>
                                             <input
