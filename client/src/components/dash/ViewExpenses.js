@@ -70,7 +70,16 @@ class ViewExpenses extends React.Component {
         this.setState({
             newExpense: expensesToKeep
         })
-        
+        axios({
+            method: 'delete',
+            url: `http://localhost:8080/expenses/${this.props.location.state.selectedVehicleiD}`,
+            headers: {
+                'Authorization': `Bearer ${this.state.token}`
+            },
+            data: {
+                expenseId: id
+            }
+        })
     }
 
     render() {

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {auth} = require('../../auth/index')
 const {VehicleModel, ExpensesModel} = require('../../model/Vehicle')
+const mongoose = require('mongoose')
 
 
 //POST NEW EXPENSE
@@ -34,6 +35,23 @@ router.get('/:id', auth, (req, res) => {
             return res.status(403).json(err)
         }
         return res.status(200).json(vehicle.expenses)
+    })
+})
+
+
+//DELETE AN EXPENSE
+router.delete('/:id', auth, async (req, res) => {
+    VehicleModel.findByIdAndUpdate(req.params.id, {
+        $pull: {
+            expenses: {
+                _id: mongoose.Types.ObjectId(req.body.expenseId) 
+            }
+        }
+    }, (err, product) => {
+        if (err) {
+            return console.log(err)
+        }
+        return console.log(product)
     })
 })
 
