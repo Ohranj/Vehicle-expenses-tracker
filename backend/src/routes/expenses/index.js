@@ -16,12 +16,24 @@ router.post('/:id', auth, async (req, res) => {
             return console.log(err)
         }
         product.expenses.push(newExpense)
-        product.save((err, product) => {
+        product.save((err) => {
             if (err) {
                 return console.log(err)
             }
-            return res.json(product)
+            return res.json(newExpense)
         })
+    })
+})
+
+
+//GET ALL EXPENSES
+router.get('/:id', auth, (req, res) => {
+    VehicleModel.findById(req.params.id, (err, vehicle) => {
+        if (err) {
+            console.log(err)
+            return res.status(403).json(err)
+        }
+        return res.status(200).json(vehicle.expenses)
     })
 })
 
