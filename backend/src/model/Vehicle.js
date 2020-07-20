@@ -20,10 +20,7 @@ const vehicleSchema = mongoose.Schema({
     user: {
         type: String
     },
-    expenses: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ExpensesModel'
-    }]
+    expenses: []
 })
 
 const expensesSchema = mongoose.Schema({
@@ -39,10 +36,6 @@ const expensesSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now()
-    },
-    vehicle: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'VehicleModel'
     }
 })
 

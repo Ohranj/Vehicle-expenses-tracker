@@ -7,7 +7,6 @@ class ViewExpenses extends React.Component {
 
     state = {
         token: localStorage.getItem('token'),
-        vehicleId: this.props.location.state.selectedVehicleiD,
         newExpense: [],
         inputName: '',
         inputDesc: '',
@@ -18,7 +17,7 @@ class ViewExpenses extends React.Component {
     submitExpense = () => {
         axios({
             method: 'post',
-            url: `http://localhost:8080/expenses/${this.state.vehicleId}`,
+            url: `http://localhost:8080/expenses/${this.props.location.state.selectedVehicleiD}`,
             headers: {
                 'Authorization': `Bearer ${this.state.token}`
             },
@@ -28,7 +27,8 @@ class ViewExpenses extends React.Component {
                 expenseValue: this.state.inputValue,
                 expenseDate: this.state.inputDate
             }
-        })
+        }).then(({data}) => console.log(data.expenses))
+        .catch((err) => console.log(err))
     }
 
     render() {
@@ -37,12 +37,11 @@ class ViewExpenses extends React.Component {
                 <Redirect to="/" />
             )
         } else {
-            console.log(this.state.vehicleId)
             return (
                 <div style={{height: '100%'}}>
                     <div className="ui grid" style={{height: '80%'}}>
                         <div className="three wide column expenseLeftCol">
-                            <Link to="/dashboard"><button className="tableBtn">Return</button></Link>
+                            <Link to="/dashboard"><button className="tableBtn" style={{cursor: 'pointer'}}>Return</button></Link>
                         </div>
                         <div className="ten wide column centered" style={{marginTop: '5%'}}>
                         <h3>Expenses for {this.props.location.state.selectedVehicleName}</h3>
@@ -57,25 +56,11 @@ class ViewExpenses extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>No Name Specified</td>
-                                        <td>Unknown</td>
-                                        <td>None</td>
-                                        <td>19/07/2020</td>
-                                        <td><button className="ui red button tableBtn">Delete</button></td>
-                                    </tr>
                                     <tr className="positive">
                                         <td>Jimmy</td>
                                         <td>Approved</td>
                                         <td>None</td>
                                         <td>17/07/2020</td>
-                                        <td><button className="ui red button tableBtn">Delete</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jamie</td>
-                                        <td>Unknown</td>
-                                        <td>Requires call</td>
-                                        <td>12/06/2020</td>
                                         <td><button className="ui red button tableBtn">Delete</button></td>
                                     </tr>
                                     <tr className="negative">

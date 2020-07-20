@@ -88,7 +88,7 @@ html, #root {
 }
 .expenseLeftCol {
     margin-top: 5%;
-    padding-left: 5% !important;
+    padding-left: 10% !important;
 }
 .expenseTable {
     border: 1px solid black !important;

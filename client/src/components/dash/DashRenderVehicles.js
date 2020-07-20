@@ -12,7 +12,7 @@ class DashRenderVehicles extends React.Component {
     renderVehicles = () => {
         const vehicleData = this.props.vehicles.map(vehicle => {
             return (
-                <tr style={{cursor: 'pointer'}} key={vehicle._id}>
+                <tr key={vehicle._id}>
                     <td data-label="Name">{vehicle.name}</td>
                     <td data-label="vehicle-reg">{vehicle.registration}</td>
                     <td data-label="make">{vehicle.make}</td>
