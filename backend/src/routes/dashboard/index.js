@@ -39,6 +39,19 @@ router.get('/', auth, async (req, res, next) => {
 })
 
 
+//DELETE VEHICLE
+router.delete('/:id', auth, (req, res) => {
+    VehicleModel.findByIdAndDelete(req.params.id, (err, product) => {
+        if (err) {
+            console.log(err)
+            res.status(403).json(err)
+        }
+        console.log('Vehicle deleted')
+        return res.status(200).json('deleted')
+    })
+})
+
+
 module.exports = {
     dashBoardRoute: router
 }

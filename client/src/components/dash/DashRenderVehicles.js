@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 
 class DashRenderVehicles extends React.Component {
@@ -7,6 +8,21 @@ class DashRenderVehicles extends React.Component {
     state = {
         selectedVehicleName: '',
         selectedVehicleiD: ''
+    }
+
+    deleteVehicle = (id) => {
+        const token = localStorage.getItem('token')
+        axios({
+            method: 'delete',
+            url: `http://localhost:8080/dash/${id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(() => {
+            window.location.reload()
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     renderVehicles = () => {
@@ -24,7 +40,7 @@ class DashRenderVehicles extends React.Component {
                         state: {selectedVehicleName: vehicle.name, selectedVehicleiD: vehicle._id}
                     }}><button className="ui green button tableBtn">View</button></Link></td>
                     <td><button className="ui yellow button tableBtn">Edit</button></td>
-                    <td><button className="ui red button tableBtn">Delete</button></td>
+                    <td><button className="ui red button tableBtn" onClick={() => this.deleteVehicle(vehicle._id)}>Delete</button></td>
                 </tr>
             )
         })

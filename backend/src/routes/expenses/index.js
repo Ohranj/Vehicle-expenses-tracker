@@ -21,6 +21,7 @@ router.post('/:id', auth, async (req, res) => {
             if (err) {
                 return console.log(err)
             }
+            console.log('Expense added')
             return res.json(newExpense)
         })
     })
@@ -51,7 +52,7 @@ router.delete('/:id', auth, async (req, res) => {
         if (err) {
             return console.log(err)
         }
-        return console.log(product)
+        return console.log('Expense deleted')
     })
 })
 
