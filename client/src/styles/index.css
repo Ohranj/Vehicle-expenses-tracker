@@ -96,3 +96,21 @@ html, #root {
 .tableBtn {
     padding: 5px 11px !important;
 }
+.editVehicleContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5%;
+    border-top: 1px solid black;
+    padding: 5px;
+}
+.editVehicleContainer > form {
+    display: flex !important;
+    justify-content: center !important;
+}
+.submitEditBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 7px !important;
+}

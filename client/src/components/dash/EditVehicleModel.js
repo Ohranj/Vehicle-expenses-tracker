@@ -37,14 +37,18 @@ class EditVehicleModel extends React.Component {
 
     render() {
         return (
-            <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', marginTop: '5%', borderTop: '1px solid black', padding: '5px'}}>
+            <div className="editVehicleContainer">
                 <h3>Edit {this.props.vehicleName}</h3>
-                <form style={{display: 'flex', justifyContent: 'center'}} onSubmit={this.submitEdit}>
+                <form onSubmit={this.submitEdit}>
                         <div className="ui form">
                             <div className="fields">
                                 <div className="field">
                                     <label>Name</label>
-                                    <input type="checkbox" checked={this.state.editName} onChange={() => {this.setState({editName: !this.state.editName})}} />
+                                    <input 
+                                        type="checkbox" 
+                                        checked={this.state.editName} 
+                                        onChange={() => {this.setState({editName: !this.state.editName})}} 
+                                    />
                                     <input
                                         type="text"
                                         disabled={!this.state.editName}
@@ -54,7 +58,11 @@ class EditVehicleModel extends React.Component {
                                 </div>
                                 <div className="field">
                                     <label>Vehicle Reg.</label>
-                                    <input type="checkbox" checked={this.state.editReg} onChange={() => {this.setState({editReg: !this.state.editReg})}} />
+                                    <input 
+                                        type="checkbox" 
+                                        checked={this.state.editReg} 
+                                        onChange={() => {this.setState({editReg: !this.state.editReg})}} 
+                                    />
                                     <input
                                         type="text"
                                         disabled={!this.state.editReg}
@@ -64,7 +72,11 @@ class EditVehicleModel extends React.Component {
                                 </div>
                                 <div className="field">
                                     <label>Mileage</label>
-                                    <input type="checkbox" checked={this.state.editMileage} onChange={() => {this.setState({editMileage: !this.state.editMileage})}} />
+                                    <input 
+                                        type="checkbox" 
+                                        checked={this.state.editMileage} 
+                                        onChange={() => {this.setState({editMileage: !this.state.editMileage})}} 
+                                    />
                                     <input
                                         type="number"
                                         disabled={!this.state.editMileage}
@@ -72,8 +84,8 @@ class EditVehicleModel extends React.Component {
                                         onChange={({target}) => this.setState({newMileage: target.value})} 
                                     />
                                 </div>
-                                <div className="field">
-                                    <button type="submit" className="ui button yellow tableBtn" style={{marginTop: '30px'}}>Submit</button>
+                                <div className="field submitEditBtnContainer">
+                                    <button type="submit" className="ui button yellow tableBtn">Submit</button>
                                 </div>
                             </div>
                         </div>

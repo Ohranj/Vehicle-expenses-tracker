@@ -1,4 +1,4 @@
-Add a total cost to expenses table - display on vehicle table?
+Add a total cost for vehicles expenses
 
 
 existing demo account:
