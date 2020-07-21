@@ -52,6 +52,23 @@ router.delete('/:id', auth, (req, res) => {
 })
 
 
+//EDIT VEHICLE
+router.patch('/:id', auth, (req, res) => {
+    console.log(req.body.data)
+    VehicleModel.findByIdAndUpdate(req.params.id, {
+        name: req.body.name,
+        registration: req.body.registration,
+        mileage: req.body.mileage
+    }, (err, product) => {
+        if (err) {
+            return console.log(err)
+        }
+        console.log(product)
+        return res.status(200).json('success')
+    })
+})
+
+
 module.exports = {
     dashBoardRoute: router
 }

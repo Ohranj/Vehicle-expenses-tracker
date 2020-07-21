@@ -4,13 +4,19 @@ import axios from 'axios'
 
 import DashAddVehicles from './DashAddVehicles'
 import DashRenderVehicles from './DashRenderVehicles'
+import EditVehicleModel from './EditVehicleModel'
 
 
 class DashVehicles extends React.Component {
 
     state = {
         token: localStorage.getItem('token'),
-        myVehicles: []
+        myVehicles: [],
+        displayEdit: false,
+        vehicleIdToEdit: '',
+        vehicleToEdit: '',
+        vechileMilage: '',
+        vehicleReg: ''
     }
 
     componentDidMount() {
@@ -28,6 +34,16 @@ class DashVehicles extends React.Component {
             })
         })
         .catch((err) => console.log(err))
+    }
+
+    displayEditForm = (id, vehicleName, vehicleReg, vehicleMileage) => {
+        this.setState({
+            displayEdit: !this.state.displayEdit,
+            vehicleIdToEdit: id,
+            vehicleToEdit: vehicleName,
+            vehicleReg,
+            vehicleMileage
+        })
     }
 
     render() {
@@ -54,9 +70,10 @@ class DashVehicles extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody className="vehicleTable">
-                                    <DashRenderVehicles vehicles={this.state.myVehicles} />
+                                    <DashRenderVehicles editVehicle={this.displayEditForm} vehicles={this.state.myVehicles} />
                                 </tbody>
                             </table>
+                            {this.state.displayEdit ? <EditVehicleModel token={this.state.token} vehicleName={this.state.vehicleToEdit} vehicleId={this.state.vehicleIdToEdit} reg={this.state.vehicleReg} mileage={this.state.vehicleMileage} /> : null}
                         </div>
                         <div className="two wide column"></div>
                     </div>  

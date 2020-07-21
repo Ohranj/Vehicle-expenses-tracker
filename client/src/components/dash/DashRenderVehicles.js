@@ -39,7 +39,7 @@ class DashRenderVehicles extends React.Component {
                         search: `?id=${vehicle._id}$name=${vehicle.name}`,
                         state: {selectedVehicleName: vehicle.name, selectedVehicleiD: vehicle._id}
                     }}><button className="ui green button tableBtn">View</button></Link></td>
-                    <td><button className="ui yellow button tableBtn">Edit</button></td>
+                    <td><button className="ui yellow button tableBtn" onClick={() => this.props.editVehicle(vehicle._id, vehicle.name, vehicle.registration, vehicle.mileage)}>Edit</button></td>
                     <td><button className="ui red button tableBtn" onClick={() => this.deleteVehicle(vehicle._id)}>Delete</button></td>
                 </tr>
             )
