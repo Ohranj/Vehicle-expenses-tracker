@@ -1,4 +1,6 @@
-Add a total cost for vehicles expenses
+Allow users to register an account and thenadd a list of vehicles. From here users can then associate expenses to those vehicles. Features include the ability to edit and delete vehicles and delete expenses. 
+
+Project was made with express on the backend and react on the frontend. Using jsonwebtokens for authentication
 
 
 existing demo account:
