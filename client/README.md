@@ -4,6 +4,13 @@ Project was made with express on the backend and react on the frontend. Using js
 
 
 
+Hosted on heroku, however I wasn't able to overcome the react router issues it causes. On certain features when a page refresh was called, namely deleting vehicles / expenses. I had to put in a complete site reload to overcome. The code in the repository here is not the verison uploaded to heroku, rather the version that runs as desired, via localhost
+
+
+https://morning-retreat-20606.herokuapp.com/
+
+
+
 existing demo account:
 
 username - demo1@demo1.com 
